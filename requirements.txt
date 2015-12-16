@@ -27,6 +27,5 @@ scipy
 six
 snowballstemmer
 urllib3
-xgboost
 xlrd
 xlwt
