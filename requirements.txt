@@ -10,7 +10,6 @@ argparse
 blocks
 colorama
 decorator
-fuel
 functools32
 gensim
 glove
@@ -22,7 +21,7 @@ nltk
 pandas
 passage
 picklable-itertools
-progressbar==2.3
+progressbar
 protobuf
 psycopg2
 python-dateutil
