@@ -20,7 +20,6 @@ pandas
 passage
 picklable-itertools
 progressbar
-protobuf
 python-dateutil
 scikit-learn
 scipy
