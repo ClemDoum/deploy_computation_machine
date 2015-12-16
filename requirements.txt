@@ -15,7 +15,6 @@ glove
 gnureadline
 h5py
 lxml
-matplotlib
 nltk
 pandas
 passage
