@@ -7,7 +7,6 @@ PyInstaller
 Sphinx
 Tempita
 argparse
-blocks
 colorama
 decorator
 functools32
