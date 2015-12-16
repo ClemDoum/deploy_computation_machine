@@ -21,7 +21,6 @@ passage
 picklable-itertools
 progressbar
 protobuf
-psycopg2
 python-dateutil
 scikit-learn
 scipy
