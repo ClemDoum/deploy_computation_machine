@@ -24,22 +24,29 @@ def setup():
          "python-opengl python-imaging python-pyrex python-pyside.qtopengl "
          "idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 "
          "libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus "
-         "python-qt4 python-qt4-gl libgle3 python-dev -y", shell=False)
+         "python-qt4 python-qt4-gl libgle3 python-dev libncurses5-dev libxml2 "
+         "libxml2-dev libxslt1-dev -y", shell=False)
+    # ipython
+    sudo("apt-get install ipython -y")
     # Install java
     sudo("apt-get install openjdk-7-jre -y", shell=False)
     sudo("apt-get install python-pip -y", shell=False)
+    # Nmon
+    sudo("apt-get install nmon -y", shell=False)
 
 
 def install_theano():
     # Bliding edge theano
-    run("git clone git://github.com/Theano/Theano.git")
-    with cd("theano"):
-        run("python setup.py install")
+    with settings(warn_only=True):
+        run("git clone git://github.com/Theano/Theano.git")
+    with cd("Theano"):
+        run("sudo python setup.py install")
     # Blas installation
-    run("git clone git://github.com/xianyi/OpenBLAS")
-    with("cd OpenBLAS"):
+    with settings(warn_only=True):
+        run("git clone git://github.com/xianyi/OpenBLAS")
+    with cd("OpenBLAS"):
         run("make FC=gfortran")
-        sudo("make PREFIX=/usr/local/ install", shell=False)
+        run("sudo make PREFIX=/usr/local/ install", shell=False)
     # Theano flags
     run('echo -e "\n[global]\nfloatX = float32\n" '
         'openmp = True\n'
@@ -75,11 +82,13 @@ def install_scipy():
 
 
 def install_xgboost():
-    run("git clone https://github.com/dmlc/xgboost.git")
+    with settings(warn_only=True):
+        run("git clone https://github.com/dmlc/xgboost.git")
     with cd("xgboost"):
-        sudo("make", shell=False)
-        sudo("python setup install", shell=False)
-    run("rm -rf xgboost")
+        run("make")
+        with cd("python-package"):
+            run("sudo python setup.py install")
+    sudo("rm -rf xgboost")
 
 
 def install_python_libs():
@@ -87,6 +96,7 @@ def install_python_libs():
     sudo("pip install cython", shell=False)
     sudo("pip install numpy", shell=False)
     install_scipy()
+    install_HDF5()
     sudo("apt-get install python-matplotlib -y", shell=False)
     # Python libs
     sudo("pip install -r %s/requirements.txt" % config.WORKING_DIR,

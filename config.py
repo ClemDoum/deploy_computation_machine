@@ -1,7 +1,7 @@
 # Env params
-HOST = ["ec2-52-29-12-27.eu-central-1.compute.amazonaws.com"]
+HOST = ["ec2-52-29-148-197.eu-central-1.compute.amazonaws.com"]
 USER = "ubuntu"
-SSH_KEY_FILE = "/Users/clementdoumouro/python/my_aws_key.pem"
+SSH_KEY_FILE = "/Users/clementdoumouro/python/aws_test.pem"
 
 # Env variables
 OMP_NUM_THREADS = 16
