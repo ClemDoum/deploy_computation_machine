@@ -1,0 +1,5 @@
+# OpenMP
+export OMP_NUM_THREADS=8
+
+# OPEN BLAS
+export OPENBLAS_NUM_THREADS=8

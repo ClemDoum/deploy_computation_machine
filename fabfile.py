@@ -47,15 +47,9 @@ def install_theano():
     with cd("OpenBLAS"):
         run("make FC=gfortran")
         run("sudo make PREFIX=/usr/local/ install", shell=False)
-    # Theano flags
-    run('echo -e "\n[global]\nfloatX = float32\n" '
-        'openmp = True\n'
-        '[blas]\n'
-        'ldflags = -lopenblas\n'
-        ' >> ~/.theanorc')
-    # Set config.OMP_NUM_THREADS
-    run('echo -e "\nexport config.OMP_NUM_THREADS=%s\n"'
-        % config.OMP_NUM_THREADS)
+    # Copying the bash profie with nice THEANO var
+    run("cp %s/.bash_profile ." % config.WORKING_DIR)
+    run("cp %s/.theanorc ." % config.WORKING_DIR)
 
 
 def install_HDF5():
@@ -69,7 +63,7 @@ def install_h5py():
 
 def install_keras():
     install_h5py()
-    sudo("pip install git+git://github.com/Theano/Theano.git", shell=False)
+    sudo("pip install git+git://github.com/fchollet/keras.git", shell=False)
 
 
 def install_scipy():

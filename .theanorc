@@ -1,0 +1,9 @@
+[global]
+floatX = float32
+openmp = True
+
+[nvcc]
+fastmath = True
+
+[blas]
+ldflags = -lopenblas
